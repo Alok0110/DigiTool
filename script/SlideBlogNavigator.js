@@ -17,12 +17,6 @@
     }
     
     /*
-     * This variable exposes test functions to the global environment for testing purposes only
-     * This variable should always be set to true before running the Jasmine Test Suite
-     */
-    global.jasmineTestSuiteRun = false;
-    
-    /*
      * Initialize, obj is the options object  
      */
     var SlideBlogNav = function( obj ) {
