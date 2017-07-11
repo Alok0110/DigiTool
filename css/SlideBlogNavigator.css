@@ -1,0 +1,33 @@
+/*
+*
+*/
+.container {
+    width: 100%;
+}
+
+/*
+*
+*/
+.image-no-SB {
+    display: none;
+    
+}
+
+/*
+*
+*/
+.image-SB {
+    display: inline-block;
+    height: 400px;
+}
+
+/*
+*
+*/
+.header-one {
+    display: block;
+    background-color: aqua;
+    height: 100px;
+    width: 100%;
+    z-index: 999;
+}
