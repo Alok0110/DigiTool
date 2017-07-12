@@ -46,9 +46,8 @@ SpecRunner.html
 &lt;div class="container-SB"&gt; 
             &lt;div &gt; 
                 &lt;img  src="got1.jpeg" /&gt; 
-            
-                &lt;div &gt; 
-                    &lt;div &gt;<p>Game Of Thrones</p></div> 
+            &lt;div &gt; 
+                    &lt;div &gt;&lt;p&gt;Game Of Thrones&lt;/p&gt;&lt;/div&gt;
                     &lt;div &gt; 
                         &lt;p&gt; 
                             'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose.
@@ -59,16 +58,12 @@ SpecRunner.html
 &lt;/div&gt;
 
 <!-- Copy paste below template, replace image source path, this is the second container -->
-<div class="nav-container-SB">
-            
-            <div >
-                
-                <img  src="" />
-                
-                <div ></div>
-            </div>
-            
-</div>
+&lt;div class="nav-container-SB"&gt;
+            &lt;div &gt;
+                 &lt;img  src="" /&gt;
+                 &lt;div &gt; &lt;/div&gt;
+             &lt;/div&gt;
+ &lt;/div>
 
 ## Documentation
 
