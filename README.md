@@ -41,7 +41,7 @@ Current Version @ version 1.0 - SlideBlogNavigator.js
 Load Image's and Article's Directly From Website @ version 2.0 - SlideBlogNavigator.js
 
 
-## Option's setting while intialing SlideBlogNavigator
+## Option's setting while initiating SlideBlogNavigator
 
 
 Option : image
