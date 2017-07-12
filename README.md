@@ -45,7 +45,7 @@ SpecRunner.html
 <!-- Copy paste below template, replace image source path and blog description, this is the first container -->
 <div class="container-SB"> 
             <div > 
-                <img  src="got1.jpeg" /> 
+                &lt;img  src="got1.jpeg" /&gt; 
             
                 <div > 
                     <div ><p>Game Of Thrones</p></div> 
