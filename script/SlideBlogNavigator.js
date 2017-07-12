@@ -36,7 +36,11 @@
         setBackgroundColor: "#dedede",
         imageBorderColor: "#2980b9",
         imageBorderStyle: "solid",
-        imageBorderWidth: "3px"
+        imageBorderWidth: "3px",
+        blogTitleFontSize: "25px",
+        blogTitleTopMargin: "20px",
+        blogTitleBottomMargin: "20px",
+        blogTitleFontColor: "#2980b9"
     };
     
     /*
@@ -169,6 +173,10 @@
                     $(ele).addClass("col-lg-9");
                     var imgSet = $(ele).find("img");
                     console.log("test each image ==> "+imgSet.length);
+                        
+                    var DescriptionBlock = $(imgSet).siblings();
+                        
+                        
                     if( imgSet.length > 1 ) {
                         throw new Error("More than one image element found!");        
                     }
@@ -204,6 +212,45 @@
                                     imgSet.css("text-align","center");
                             } 
                     }
+                        
+                    if( DescriptionBlock.length > 1 ) {
+                        throw new Error("More than one container found for displaying the blog article's heading and contents, wrong format!");        
+                    }
+                    else {
+                        var headingOfBlog = DescriptionBlock.first();
+                        var descArr = DescriptionBlock.children();
+                        //var bodyOfBlog = descArr[1];
+                        //var headingOfBlog = descArr[0];
+                        
+                        descArr.each(function( ind, ele ) {
+                            if( ind === 0 ) {
+                                  $(ele).css("text-align","center");  
+                                  $(ele).css("font-weight","bold"); 
+                                  $(ele).css("font-size",""+self.checkProperty( self.obj.blogTitleFontSize, self.defaultVar.blogTitleFontSize ));
+                                  $(ele).css("color",""+self.checkProperty( self.obj.blogTitleFontColor, self.defaultVar.blogTitleFontColor ));
+                                  $(ele).css("margin-top",""+self.checkProperty( self.obj.blogTitleTopMargin, self.defaultVar.blogTitleBottomMargin ));
+                                  $(ele).css("margin-bottom",""+self.checkProperty( self.obj.blogTitleBottomMargin, self.defaultVar.blogTitleBottomMargin ));
+                            }
+                            if( ind === 1 ) {
+                                $(ele).css("display","inline-block");
+                                $(ele).css("width","70%");
+                                $(ele).css("margin-left","15%");
+                                $(ele).css("margin-right","15%");
+                                $(ele).css("margin-bottom","20px");
+                            }
+                        });
+                        
+                        /*if( headingContainer.length > 2 ) {
+                            throw new Error("More than two container found for heading");
+                        }
+                        else {
+                            headingContainer.css("text-align","center");
+                            headingContainer.css("font-weight","bold");
+                            headingContainer.css("font-size","25px");
+                            headingContainer.css("color","#2980b9");
+                        }*/
+                    }
+                        
                 });
             }
             
@@ -248,6 +295,9 @@
                        throw new Error("Invalid option's"); 
                 }
             });   
+        }
+        else {
+            self.obj = {};
         }
         console.log("check obj ==>  "+$(".container")+" ==> "+$(".nav-container"));
         if( !($(".container-SB").get(0) && $(".nav-container-SB").get(0)) ) {
