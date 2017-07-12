@@ -28,6 +28,10 @@ In your script file, in my case it is "myscript.js", write the below line in ord
 
 var sbobject = $SB({});
 
+you can pass options to the empty object passed as a parameter to $SB() function, for example refer below function call
+
+var sbobject = $SB({ image: true, setImageAsBackground: true,topMargin: "0px" });
+
 ## Documentation
 
 You can find documentation at [SlideBlogNavigator.js on GitHub](https://github.com/Alok0110/DigiTool).
