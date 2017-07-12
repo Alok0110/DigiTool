@@ -8,6 +8,26 @@
 
 You can download the latest version of [SlideBlogNavigator.js on GitHub](https://github.com/Alok0110/DigiTool)
 
+Include bootstrap files in the head section of your Html as shown below
+
+<!-- Bootstrap css files -->
+<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" >
+<link type="text/css" rel="stylesheet" href="css/bootstrap-theme.min.css" >
+<link type="text/css" rel="stylesheet" href="css/ionicons.min.css" >
+
+Include "jQuery.js" , "bootstrap.min.js" , "SlideBlogNavigator.js" , and your script file, in my case it is "myscript.js" in sequence as shown below in your Html file
+
+<!-- Bootstrap JS files here -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js" ></script>
+        <script type="type/javascript" src="script/bootstrap.min.js"></script>
+        <script type="text/javascript" src="script/SlideBlogNavigator.js" ></script>
+        <script type="text/javascript" src="script/myscript.js"></script>
+        
+In your script file, in my case it is "myscript.js", write the below line in order to run the script
+
+/* Run the below line for running the SlideBlogNavigator.js script */
+
+var sbobject = $SB({});
 
 ## Documentation
 
