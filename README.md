@@ -40,6 +40,36 @@ index.html
 
 SpecRunner.html
 
+/* In your "index.html" file include just the below two container div "container-SB" Div & "nav-container-SB" Div, as below, replace your image source path and your Blog description */
+
+<!-- Copy paste below template, replace image source path and blog description, this is the first container -->
+<div class="container-SB"> 
+            <div > 
+                <img  src="got.jpeg" /> 
+            
+                <div > 
+                    <div ><p>Game Of Thrones</p></div> 
+                    <div > 
+                        <p> 
+                            'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose.
+                        </p>
+                    </div>
+                </div>
+            </div>
+</div>
+
+<!-- Copy paste below template, replace image source path, this is the second container -->
+<div class="nav-container-SB">
+            
+            <div >
+                
+                <img  src="" />
+                
+                <div ></div>
+            </div>
+            
+</div>
+
 ## Documentation
 
 You can find documentation at [SlideBlogNavigator.js on GitHub](https://github.com/Alok0110/DigiTool).
