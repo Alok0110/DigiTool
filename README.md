@@ -32,14 +32,6 @@ you can pass options to the empty object passed as a parameter to $SB() function
 
 var sbobject = $SB({ image: true, setImageAsBackground: true,topMargin: "0px" });
 
-/* Run the index.html using the browser */
-
-index.html
-
-/* Run the SpecRunner.html using the browser for running the JASMINE test suites */
-
-SpecRunner.html
-
 /* In your "index.html" file include just the below two container div "container-SB" Div & "nav-container-SB" Div, as below, replace your image source path and your Blog description */
 
 <!-- Copy paste below template, replace image source path and blog description, this is the first container -->
@@ -64,6 +56,14 @@ SpecRunner.html
                  &lt;div &gt; &lt;/div&gt;
              &lt;/div&gt;
  &lt;/div>
+
+/* Run the index.html using the browser */
+
+index.html
+
+/* Run the SpecRunner.html using the browser for running the JASMINE test suites */
+
+SpecRunner.html
 
 ## Documentation
 
