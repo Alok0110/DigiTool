@@ -32,6 +32,14 @@ you can pass options to the empty object passed as a parameter to $SB() function
 
 var sbobject = $SB({ image: true, setImageAsBackground: true,topMargin: "0px" });
 
+/* Run the index.html using the browser */
+
+index.html
+
+/* Run the SpecRunner.html using the browser for running the test suites */
+
+SpecRunner.html
+
 ## Documentation
 
 You can find documentation at [SlideBlogNavigator.js on GitHub](https://github.com/Alok0110/DigiTool).
