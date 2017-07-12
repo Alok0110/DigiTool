@@ -11,9 +11,9 @@ You can download the latest version of [SlideBlogNavigator.js on GitHub](https:/
 Include bootstrap files in the head section of your Html as shown below
 
 <!-- Bootstrap css files -->
-<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" >
-<link type="text/css" rel="stylesheet" href="css/bootstrap-theme.min.css" >
-<link type="text/css" rel="stylesheet" href="css/ionicons.min.css" >
+link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" 
+link type="text/css" rel="stylesheet" href="css/bootstrap-theme.min.css" 
+link type="text/css" rel="stylesheet" href="css/ionicons.min.css" 
 
 Include "jQuery.js" , "bootstrap.min.js" , "SlideBlogNavigator.js" , and your script file, in my case it is "myscript.js" in sequence as shown below in your Html file
 
