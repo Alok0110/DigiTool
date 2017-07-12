@@ -36,7 +36,7 @@ var sbobject = $SB({ image: true, setImageAsBackground: true,topMargin: "0px" })
 
 index.html
 
-/* Run the SpecRunner.html using the browser for running the test suites */
+/* Run the SpecRunner.html using the browser for running the JASMINE test suites */
 
 SpecRunner.html
 
