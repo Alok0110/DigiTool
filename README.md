@@ -8,6 +8,29 @@
 
 You can download the latest version of [SlideBlogNavigator.js on GitHub](https://github.com/Alok0110/DigiTool)
 
+Include CSS bootstrap files in the head section of your Html as shown below
+
+<!-- Bootstrap css files -->
+link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" 
+link type="text/css" rel="stylesheet" href="css/bootstrap-theme.min.css" 
+
+Include "jQuery.js" , "bootstrap.min.js" , "SlideBlogNavigator.js" , and your script file, in my case it is "myscript.js" in sequence as shown below in your Html file
+
+<!-- Bootstrap JS files here -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js" ></script>
+        <script type="type/javascript" src="script/bootstrap.min.js"></script>
+        <script type="text/javascript" src="script/SlideBlogNavigator.js" ></script>
+        <script type="text/javascript" src="script/myscript.js"></script>
+        
+In your script file, in my case it is "myscript.js", write the below line in order to run the script
+
+/* Run the below line for running the SlideBlogNavigator.js script */
+
+var sbobject = $SB({});
+
+you can pass options to the empty object passed as a parameter to $SB() function, for example refer below function call
+
+var sbobject = $SB({ image: true, setImageAsBackground: true,topMargin: "0px" });
 
 ## Documentation
 
@@ -18,7 +41,7 @@ Current Version @ version 1.0 - SlideBlogNavigator.js
 Load Image's and Article's Directly From Website @ version 2.0 - SlideBlogNavigator.js
 
 
-## Option's setting while intialing SlideBlogNavigator
+## Option's setting while initiating SlideBlogNavigator
 
 
 Option : image
