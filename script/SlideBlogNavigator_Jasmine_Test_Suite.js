@@ -2,8 +2,6 @@ describe("Test the initiation of the SlideBlogNavigator script", function(){
     
     it("An exception should be thrown, if the parameter passed is not of type object => STRING ",function(){
         
-        
-        
         expect($SB.bind(this, "ok")).toThrow();
         
     });
@@ -26,6 +24,9 @@ describe("Test the initiation of the SlideBlogNavigator script", function(){
         expect($SB.bind(this, { setImageAsBackground: true })).not.toThrow();
     });
     
+    it("An exception should not be thrown, if parameter passed has unexpected key", function(){
+        expect($SB.bind(this, { setMyOwnKey: true })).toThrow();
+    });
         
 });
 
