@@ -1,17 +1,17 @@
 describe("Test the initiation of the SlideBlogNavigator script", function(){
     
-    it("An exception should be thrown, if the parameter passed is not of type object => STRING ",function(){
+    it("An exception should be thrown, if the parameter passed is not of type object, test for string  ",function(){
         
         expect($SB.bind(this, "ok")).toThrow();
         
     });
     
-    it("An exception should be thrown, if the parameter passed is not of type object => BOOLEAN ",function(){
+    it("An exception should be thrown, if the parameter passed is not of type object, test for boolean  ",function(){
         
         expect($SB.bind(this, true)).toThrow();
     });
     
-    it("An exception should be thrown, if the parameter passed is not of type object => NUMBER",function(){
+    it("An exception should be thrown, if the parameter passed is not of type object,, test for number  ",function(){
         
         expect($SB.bind(this, 4)).toThrow();
     });
