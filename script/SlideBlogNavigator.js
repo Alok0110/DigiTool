@@ -131,14 +131,18 @@
                     return defaultSetting;
             }
             else {
+                    if( $.type(userSetting) !== $.type(defaultSetting)  ) {
+                        throw new Error("The type of option's provided is not correct");
+                    }
                     return userSetting;
             }
         },
         
         /*
-         * Set's the all the required settings
+         * Set's all the required settings
+         * Pass DOM element as parameter's for Jasmine test suite
          */
-        runSlideBlogNavEngine: function(){
+        runSlideBlogNavEngine: function( /* parentDomContainerElement, parentDomNavigationContainerElement */ ){
             var self = this;
             
             var BigExternalContainer = $("<div></div>");
@@ -163,7 +167,7 @@
             
             
                 if( $(".container-fluid").get(0) ) {
-                    alert("ok")
+                    //alert("ok")
                     var firstChilds = $(".container-SB").children();
                     console.log("These are first childs of ==> "+firstChilds);
                     firstChilds.each(function(ind, ele){
@@ -187,7 +191,7 @@
                             if( setImg ) {
                                     var tempDivHolder = $("<div></div>");
                                     var srcOfFile = imgSet.attr("src");
-                                    alert("ok ==> "+srcOfFile);
+                                    //alert("ok ==> "+srcOfFile);
                                     tempDivHolder.css("background-image","url("+srcOfFile+")");
                                     tempDivHolder.css("background-position","center");
                                     tempDivHolder.css("background-size","cover");
@@ -288,6 +292,11 @@
     
     SlideBlogNav.init = function( obj ) {
         var self = this;
+        
+        if($.type(obj) !==  "object" ) {
+                throw new Error("Parameter passed is not of type Object");
+        }
+        
         self.obj = obj;
         if( obj ) {
             Object.getOwnPropertyNames(obj).forEach(function (obj, index){

@@ -1,4 +1,4 @@
-var sbobject = $SB({});
+var sbobject = $SB({setImageAsBackground:true});
 //var sbobject2 = $SB( { image: false } );   image: true, setImageAsBackground: true,topMargin: "0px" 
 console.log( " this is the object ==> "+JSON.stringify(sbobject) );
 //sbobject.testMethod();
