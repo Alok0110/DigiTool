@@ -2,19 +2,7 @@ describe("Test the initiation of the SlideBlogNavigator script", function(){
     
     it("An exception should be thrown, if the parameter passed is not of type object => STRING ",function(){
         
-        /*var foo = function() {
-          return 1 + 2;
-        };
-        var bar = function() {
-          return a + 1;
-        };
-        var baz = function() {
-          throw 'what';
-        };
-
-        expect(foo).not.toThrow();
-        expect(bar).toThrow();
-        expect(baz).toThrow('what');*/
+        
         
         expect($SB.bind(this, "ok")).toThrow();
         
