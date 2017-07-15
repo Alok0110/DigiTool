@@ -31,7 +31,23 @@ describe("Test the initiation of the SlideBlogNavigator script", function(){
 });
 
 
-
+describe("Spy if SlideBlogNav engine is called",function(){
+    
+    var obone;
+    var funcObj = SlideBlogNav.prototype; /* For working with Spy */
+    beforeEach(function(){
+        
+        console.log(" ==> GOT ==>"+funcObj+" "+($.type(obone) === "undefined"));
+        
+        spyOn(funcObj,'runSlideBlogNavEngine');
+        obone = SlideBlogNav({});
+    });
+    
+    it("tracks that a SlideBlogNav engine was called", function(){
+        expect(funcObj.runSlideBlogNavEngine).toHaveBeenCalled();
+    });
+    
+});
 
 
 xdescribe("A spy", function() {
