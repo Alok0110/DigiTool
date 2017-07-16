@@ -138,43 +138,18 @@
             }
         },
         
-        /*
-         * Set's all the required settings
-         * Pass DOM element as parameter's for Jasmine test suite
-         */
-        runSlideBlogNavEngine: function( /* parentDomContainerElement, parentDomNavigationContainerElement */ ){
-            var self = this;
+        commonFuncForImageAndDescription: function(ind, ele, self, optionSelect) {
             
-            var BigExternalContainer = $("<div></div>");
-            BigExternalContainer.addClass("container-fluid");
-            BigExternalContainer.css("background-color",""+self.checkProperty( self.obj.setBackgroundColor, self.defaultVar.setBackgroundColor ));
-            BigExternalContainer.css("margin-top",""+self.checkProperty( self.obj.topMargin, self.defaultVar.topMargin ));
-            
-            var ParaFirstContainer = $(".container-SB");
-            ParaFirstContainer.addClass("row");
-            
-            var ParaSecondContainer = $(".nav-container-SB");
-            BigExternalContainer.append( ParaFirstContainer );
-            BigExternalContainer.append( ParaSecondContainer );
-            
-            var firstEle = $("body").children().first();
-            if( $.type( firstEle ) !== "undefined" ) {
-                  $( firstEle ).after( BigExternalContainer );  
-            }
-            else {
-                $("body").prepend( BigExternalContainer );
-            }
-            
-            
-                if( $(".container-fluid").get(0) ) {
-                    //alert("ok")
-                    var firstChilds = $(".container-SB").children();
-                    console.log("These are first childs of ==> "+firstChilds);
-                    firstChilds.each(function(ind, ele){
                     console.log("first child"+ind);
-                    $(ele).addClass("col-sm-9");
-                    $(ele).addClass("col-md-9");
-                    $(ele).addClass("col-lg-9");
+                    if( optionSelect === "containerSB" ) {
+                        $(ele).addClass("col-sm-9");
+                        $(ele).addClass("col-md-9");
+                        $(ele).addClass("col-lg-9");
+                    }
+                    else if( optionSelect === "NavcontainerSB" ) {
+                        
+                    }
+                    
                     var imgSet = $(ele).find("img");
                     console.log("test each image ==> "+imgSet.length);
                         
@@ -185,9 +160,12 @@
                         throw new Error("More than one image element found!");        
                     }
                     else {
+                           
                             var setImg;
                             setImg = self.checkProperty( self.obj.setImageAsBackground, self.defaultVar.setImageAsBackground );
-                            
+                            if( optionSelect === "NavcontainerSB" ) {
+                                setImg = true;
+                            }
                             if( setImg ) {
                                     var tempDivHolder = $("<div></div>");
                                     var srcOfFile = imgSet.attr("src");
@@ -198,7 +176,15 @@
                                     tempDivHolder.css("border-color",""+self.checkProperty( self.obj.imageBorderColor, self.defaultVar.imageBorderColor ));
                                     tempDivHolder.css("border-style",""+self.checkProperty( self.obj.imageBorderStyle, self.defaultVar.imageBorderStyle ));
                                     tempDivHolder.css("border-width", ""+self.checkProperty( self.obj.imageBorderWidth, self.defaultVar.imageBorderWidth ));
-                                    tempDivHolder.css("height","400px");
+                                    if( optionSelect === "NavcontainerSB" ) {
+                                        tempDivHolder.css("height","150px");
+                                        tempDivHolder.css("cursor","pointer");
+                                        
+                                    }
+                                    else {
+                                        tempDivHolder.css("height","400px");
+                                    }
+                                    
                                     imgSet.addClass("image-no-SB");
                                     imgSet.css("display","none");
                                     //tempDivHolder.insertAfter(ele);
@@ -221,28 +207,83 @@
                         throw new Error("More than one container found for displaying the blog article's heading and contents, wrong format!");        
                     }
                     else {
-                        var headingOfBlog = DescriptionBlock.first();
-                        var descArr = DescriptionBlock.children();
-                        //var bodyOfBlog = descArr[1];
-                        //var headingOfBlog = descArr[0];
                         
-                        descArr.each(function( ind, ele ) {
-                            if( ind === 0 ) {
-                                  $(ele).css("text-align","center");  
-                                  $(ele).css("font-weight","bold"); 
-                                  $(ele).css("font-size",""+self.checkProperty( self.obj.blogTitleFontSize, self.defaultVar.blogTitleFontSize ));
-                                  $(ele).css("color",""+self.checkProperty( self.obj.blogTitleFontColor, self.defaultVar.blogTitleFontColor ));
-                                  $(ele).css("margin-top",""+self.checkProperty( self.obj.blogTitleTopMargin, self.defaultVar.blogTitleBottomMargin ));
-                                  $(ele).css("margin-bottom",""+self.checkProperty( self.obj.blogTitleBottomMargin, self.defaultVar.blogTitleBottomMargin ));
-                            }
-                            if( ind === 1 ) {
-                                $(ele).css("display","inline-block");
-                                $(ele).css("width","70%");
-                                $(ele).css("margin-left","15%");
-                                $(ele).css("margin-right","15%");
-                                $(ele).css("margin-bottom","20px");
-                            }
-                        });
+                        if( optionSelect !== "NavcontainerSB" ) {
+                            
+                            var headingOfBlog = DescriptionBlock.first();
+                            var descArr = DescriptionBlock.children();
+                            //var bodyOfBlog = descArr[1];
+                            //var headingOfBlog = descArr[0];
+
+                            descArr.each(function( ind, ele ) {
+                                if( ind === 0 ) {
+                                      $(ele).css("text-align","center");  
+                                      $(ele).css("font-weight","bold"); 
+                                      $(ele).css("font-size",""+self.checkProperty( self.obj.blogTitleFontSize, self.defaultVar.blogTitleFontSize ));
+                                      $(ele).css("color",""+self.checkProperty( self.obj.blogTitleFontColor, self.defaultVar.blogTitleFontColor ));
+                                      $(ele).css("margin-top",""+self.checkProperty( self.obj.blogTitleTopMargin, self.defaultVar.blogTitleBottomMargin ));
+                                      $(ele).css("margin-bottom",""+self.checkProperty( self.obj.blogTitleBottomMargin, self.defaultVar.blogTitleBottomMargin ));
+                                }
+                                if( ind === 1 ) {
+                                    $(ele).css("display","inline-block");
+                                    $(ele).css("width","70%");
+                                    $(ele).css("margin-left","15%");
+                                    $(ele).css("margin-right","15%");
+                                    $(ele).css("margin-bottom","20px");
+                                }
+                            });
+                            
+                        }
+                        
+                        
+                }
+            
+        },
+        
+        
+        /*
+         * Set's all the required settings
+         * Pass DOM element as parameter's for Jasmine test suite
+         */
+        runSlideBlogNavEngine: function( /* parentDomContainerElement, parentDomNavigationContainerElement */ ){
+            var self = this;
+            
+            var BigExternalContainer = $("<div></div>");
+            BigExternalContainer.addClass("container-fluid");
+            BigExternalContainer.css("background-color",""+self.checkProperty( self.obj.setBackgroundColor, self.defaultVar.setBackgroundColor ));
+            //BigExternalContainer.css("margin-top",""+self.checkProperty( self.obj.topMargin, self.defaultVar.topMargin ));
+            
+            var ParaFirstContainer = $(".container-SB");
+            ParaFirstContainer.addClass("row");
+            ParaFirstContainer.css("margin-top",""+self.checkProperty( self.obj.topMargin, self.defaultVar.topMargin ));
+            
+            var ParaSecondContainer = $(".nav-container-SB");
+            ParaSecondContainer.css("margin-top",""+self.checkProperty( self.obj.topMargin, self.defaultVar.topMargin ));
+            ParaSecondContainer.addClass("scrollbar");
+            ParaSecondContainer.attr("id","style-1");
+            
+            BigExternalContainer.append( ParaFirstContainer );
+            //BigExternalContainer.append( ParaSecondContainer );
+            
+            var firstEle = $("body").children().first();
+            if( $.type( firstEle ) !== "undefined" ) {
+                  $( firstEle ).after( BigExternalContainer );
+                  $( firstEle ).after( ParaSecondContainer );
+            }
+            else {
+                $("body").prepend( BigExternalContainer );
+                $( "body" ).after( ParaSecondContainer );
+            }
+            
+            
+                if( $(".container-fluid").get(0) ) {
+                    //alert("ok")
+                    var firstChilds = $(".container-SB").children();
+                    console.log("These are first childs of ==> "+firstChilds);
+                    
+                    firstChilds.each(function(ind, ele){
+                        self.commonFuncForImageAndDescription(ind, ele, self, "containerSB");
+                    
                         
                         /*if( headingContainer.length > 2 ) {
                             throw new Error("More than two container found for heading");
@@ -253,9 +294,36 @@
                             headingContainer.css("font-size","25px");
                             headingContainer.css("color","#2980b9");
                         }*/
-                    }
+                    });
+                    
+                    $(".nav-container-SB").css("display","block");
+                    $(".nav-container-SB").css("margin-top",""+self.checkProperty( self.obj.topMargin, self.defaultVar.topMargin));
+                    $(".nav-container-SB").css("height","100vh");
+                    $(".nav-container-SB").css("width","25%");
+                    $(".nav-container-SB").css("z-index","997");
+                    $(".nav-container-SB").css("position","fixed");
+                    $(".nav-container-SB").css("margin-left","75%");
+                    $(".nav-container-SB").css("overflow","auto");
+                    
+                    var firstNavContainerChilds = $(".nav-container-SB").children();
+                    console.log("These are first Nav childs of ==> "+firstNavContainerChilds);
+                    
+                    firstNavContainerChilds.each(function(ind, ele){
+                        self.commonFuncForImageAndDescription(ind, ele, self, "NavcontainerSB");
+                    
                         
-                });
+                    });
+                    /*var firstNavContainerChilds = $(".nav-container-SB").children();
+                    console.log("These are first childs of ==> "+firstNavContainerChilds);
+                    
+                    firstNavContainerChilds.each(function(ind, ele){
+                        console.log("first child"+ind);
+                        $(ele).addClass("col-sm-3");
+                        $(ele).addClass("col-md-3");
+                        $(ele).addClass("col-lg-3");
+                        
+                        
+                    });*/
             }
             
             
