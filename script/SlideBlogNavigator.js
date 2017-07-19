@@ -138,6 +138,11 @@
             }
         },
         
+        /*
+        /* This Function Add's The Basic Setup Only
+        /* Handles CSS For Main Panel
+        /*
+        */
         commonFuncForImageAndDescription: function(ind, ele, self, optionSelect) {
             
                     console.log("first child"+ind);
@@ -166,24 +171,28 @@
                             if( optionSelect === "NavcontainerSB" ) {
                                 setImg = true;
                             }
+                        
+                            var tempDivHolder = $("<div></div>");
+                            var srcOfFile = imgSet.attr("src");
+                            //alert("ok ==> "+srcOfFile);
+                            tempDivHolder.css("background-image","url("+srcOfFile+")");
+                            tempDivHolder.css("background-position","center");
+                            tempDivHolder.css("background-size","cover");
+                            tempDivHolder.css("border-color",""+self.checkProperty( self.obj.imageBorderColor, self.defaultVar.imageBorderColor ));
+                            tempDivHolder.css("border-style",""+self.checkProperty( self.obj.imageBorderStyle, self.defaultVar.imageBorderStyle ));
+                            tempDivHolder.css("border-width", ""+self.checkProperty( self.obj.imageBorderWidth, self.defaultVar.imageBorderWidth ));
+                            
+                            if( optionSelect === "NavcontainerSB" ) {
+                                tempDivHolder.css("height","150px");
+                                tempDivHolder.css("cursor","pointer");
+
+                            }
+                            else {
+                                tempDivHolder.css("height","400px");
+                            }
+                        
                             if( setImg ) {
-                                    var tempDivHolder = $("<div></div>");
-                                    var srcOfFile = imgSet.attr("src");
-                                    //alert("ok ==> "+srcOfFile);
-                                    tempDivHolder.css("background-image","url("+srcOfFile+")");
-                                    tempDivHolder.css("background-position","center");
-                                    tempDivHolder.css("background-size","cover");
-                                    tempDivHolder.css("border-color",""+self.checkProperty( self.obj.imageBorderColor, self.defaultVar.imageBorderColor ));
-                                    tempDivHolder.css("border-style",""+self.checkProperty( self.obj.imageBorderStyle, self.defaultVar.imageBorderStyle ));
-                                    tempDivHolder.css("border-width", ""+self.checkProperty( self.obj.imageBorderWidth, self.defaultVar.imageBorderWidth ));
-                                    if( optionSelect === "NavcontainerSB" ) {
-                                        tempDivHolder.css("height","150px");
-                                        tempDivHolder.css("cursor","pointer");
-                                        
-                                    }
-                                    else {
-                                        tempDivHolder.css("height","400px");
-                                    }
+                                    
                                     
                                     imgSet.addClass("image-no-SB");
                                     imgSet.css("display","none");
@@ -192,6 +201,10 @@
                                     $(ele).prepend(tempDivHolder);
                             }
                             else {
+                                    
+                                    tempDivHolder.css("display","none");
+                                    $(ele).prepend(tempDivHolder);
+                                    
                                     imgSet.css("display","block");
                                     imgSet.css("height","auto");
                                     imgSet.css("max-width","100%");
@@ -240,6 +253,39 @@
             
         },
         
+        /*
+        /* This Function Handles CSS For Navigation Panel
+        /* 
+        /*
+        */
+        commanFunctionForNavigationPanel: function( imgItr1, imgItr2 ) {
+                this.imgItr1 = imgItr1;
+                this.imgItr2 = imgItr2;
+            if( imgItr1 && imgItr2 ){
+                    Object.keys( imgItr2 ).forEach( function(ele, ind) {
+
+                            if( imgItr2[ind] ) {
+
+                                if( $(imgItr1[ind]).css("background-image") !== 'none' ) {
+
+                                    $(imgItr2[ind]).css( "background-image", ""+$(imgItr1[ind]).css( "background-image" ) );
+                                }
+                                else {
+
+                                    $(imgItr2[ind]).html( ""+$(imgItr1[ind]).children("div").first().html() );
+                                    $(imgItr2[ind]).children("p").css("text-align","center");
+                                    $(imgItr2[ind]).children("p").css("font-weight","bold");
+
+                                }
+
+                            }
+                    } );
+               } else {
+                   throw new Error("Image Elements missing");
+               }
+        
+        },
+        
         
         /*
          * Set's all the required settings
@@ -248,6 +294,7 @@
         runSlideBlogNavEngine: function( /* parentDomContainerElement, parentDomNavigationContainerElement */ ){
             var self = this;
             
+            var loopCounter=true;
             var BigExternalContainer = $("<div></div>");
             BigExternalContainer.addClass("container-fluid");
             BigExternalContainer.css("background-color",""+self.checkProperty( self.obj.setBackgroundColor, self.defaultVar.setBackgroundColor ));
@@ -284,16 +331,6 @@
                     firstChilds.each(function(ind, ele){
                         self.commonFuncForImageAndDescription(ind, ele, self, "containerSB");
                     
-                        
-                        /*if( headingContainer.length > 2 ) {
-                            throw new Error("More than two container found for heading");
-                        }
-                        else {
-                            headingContainer.css("text-align","center");
-                            headingContainer.css("font-weight","bold");
-                            headingContainer.css("font-size","25px");
-                            headingContainer.css("color","#2980b9");
-                        }*/
                     });
                     
                     $(".nav-container-SB").css("display","block");
@@ -311,22 +348,15 @@
                     firstNavContainerChilds.each(function(ind, ele){
                         self.commonFuncForImageAndDescription(ind, ele, self, "NavcontainerSB");
                     
-                        
                     });
-                    /*var firstNavContainerChilds = $(".nav-container-SB").children();
-                    console.log("These are first childs of ==> "+firstNavContainerChilds);
                     
-                    firstNavContainerChilds.each(function(ind, ele){
-                        console.log("first child"+ind);
-                        $(ele).addClass("col-sm-3");
-                        $(ele).addClass("col-md-3");
-                        $(ele).addClass("col-lg-3");
-                        
-                        
-                    });*/
             }
-            
-            
+                   
+                   var imgItr1 = ParaFirstContainer.find("img").siblings();
+                   var imgItr2 = ParaSecondContainer.find("img").siblings();
+                    
+                   self.commanFunctionForNavigationPanel( imgItr1, imgItr2 );
+
         },
         
         /*
