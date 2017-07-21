@@ -110,7 +110,9 @@ Default: '3px'
 Function's as: Set's the Image border width.
 
 
-## API's methods under construction
+## API's methods ( Few methods under construction )
 
-
+<b>Method</b>: setAutomaticScroll( --boolean-- )
+<b>Default</b>: No click event assigned
+<b>Function's<b>: Assign's click event to Navigation Panel
 
