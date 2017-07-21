@@ -77,42 +77,42 @@ Load Image's and Article's Directly From Website @ version 2.0 - SlideBlogNaviga
 ## Option's setting while initiating SlideBlogNavigator
 
 
-Option : image
-Default: true
-Function's as: When set true it singnals API that images are used in the Blog
+<b>Option</b> : image
+<b>Default</b>: true
+<b>Function's as</b>: When set true it singnals API that images are used in the Blog
 
-Option : topMargin
-Default: '0px'
-Function's as: Used when menu header is present on top, this will ensure that Blog articles is not overlapped
+<b>Option</b> : topMargin
+<b>Default</b>: '0px'
+<b>Function's as</b>: Used when menu header is present on top, this will ensure that Blog articles is not overlapped
 
-Option : bottomMargin
-Default: '0px'
-Function's as: Used for providing extra space at bottom
+<b>Option</b> : bottomMargin
+<b>Default</b>: '0px'
+<b>Function's as</b>: Used for providing extra space at bottom
 
-Option : setImageAsBackground
-Default: true
-Function's as: Blog images are displayed as background images in a container, if false normal image container is used.
+<b>Option</b> : setImageAsBackground
+<b>Default</b>: true
+<b>Function's as</b>: Blog images are displayed as background images in a container, if false normal image container is used.
 
-Option : setBackgroundColor
-Default: '#dedede'
-Function's as: Set's the background color of the website.
+<b>Option</b> : setBackgroundColor
+<b>Default</b>: '#dedede'
+<b>Function's as</b>: Set's the background color of the website.
 
-Option : imageBorderColor
-Default: '#2980b9'
-Function's as: Set's the Image border color.
+<b>Option</b> : imageBorderColor
+<b>Default</b>: '#2980b9'
+<b>Function's as</b>: Set's the Image border color.
 
-Option : imageBorderStyle
-Default: 'solid'
-Function's as: Set's the Image border style.
+<b>Option</b> : imageBorderStyle
+<b>Default</b>: 'solid'
+<b>Function's as</b>: Set's the Image border style.
 
-Option : imageBorderWidth
-Default: '3px'
-Function's as: Set's the Image border width.
+<b>Option</b> : imageBorderWidth
+<b>Default</b>: '3px'
+<b>Function's as</b>: Set's the Image border width.
 
 
 ## API's methods ( Few methods under construction )
 
 <b>Method</b>: setAutomaticScroll( --boolean-- )
 <b>Default</b>: No click event assigned
-<b>Function's<b>: Assign's click event to Navigation Panel
+<b>Function's</b>: Assign's click event to Navigation Panel
 
