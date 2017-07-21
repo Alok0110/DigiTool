@@ -124,6 +124,67 @@
         },
         
         /*
+         * Performs the scroll animation
+         * 
+         */
+        scrollAnimation: function( posAnim ) {
+            var self = this;
+            $( 'body' ).animate({scrollTop: ""+posAnim[1]+"px" },500);
+            
+        },
+        
+        /*
+         * Finds the position's
+         * 
+         */
+        findPos: function( objT ) {
+            var curleft = curtop = 0;
+            if (objT.offsetParent) {
+            
+                do {
+                        curleft += objT.offsetLeft;
+                        curtop += objT.offsetTop;
+                    } while (objT = objT.offsetParent);
+                
+            }
+            return [curleft,curtop];
+        },
+        
+        /*
+         * Bind an event to the Navigator click
+         * set paramenter to false in order to unbind event
+         */
+        setAutomaticScroll: function( isEnabledAutoNavigationScroll ) {
+            var self = this;
+                var cnt=0;
+                while( true ) {
+                    console.log("run "+cnt);
+                    if( $(".control-nav-x-"+cnt).get(0) ) {
+                        
+                        if( isEnabledAutoNavigationScroll ) {
+                            $(".control-nav-x-"+cnt).bind("click",function( e ){
+                                var cT = e.currentTarget;
+                                var getCid = $(cT).attr("class");
+                                var lastInd = getCid.lastIndexOf("-");
+                                var tempStr = getCid.substring(0,lastInd)+"x"+getCid.substring(lastInd);
+                                tempStr = tempStr.trim();
+                                self.scrollAnimation( self.findPos( $("."+tempStr).get(0) ) );
+                            });
+                        } else if ( !isEnabledAutoNavigationScroll ) {
+                            $(".control-nav-x-"+cnt).unbind("click");
+                        }
+                        
+                    }
+                    else {
+                        break;
+                    }
+                    cnt++;
+                }
+        },
+        
+        
+        
+        /*
          * Check's the user setting's or returns default setting's
          */
         checkProperty: function( userSetting, defaultSetting ) {
@@ -150,6 +211,7 @@
                         $(ele).addClass("col-sm-9");
                         $(ele).addClass("col-md-9");
                         $(ele).addClass("col-lg-9");
+                        $(ele).addClass("control-nav-xx-"+ind);
                     }
                     else if( optionSelect === "NavcontainerSB" ) {
                         
@@ -182,6 +244,7 @@
                             tempDivHolder.css("border-style",""+self.checkProperty( self.obj.imageBorderStyle, self.defaultVar.imageBorderStyle ));
                             tempDivHolder.css("border-width", ""+self.checkProperty( self.obj.imageBorderWidth, self.defaultVar.imageBorderWidth ));
                             
+                            
                             if( optionSelect === "NavcontainerSB" ) {
                                 tempDivHolder.css("height","150px");
                                 tempDivHolder.css("cursor","pointer");
@@ -198,6 +261,7 @@
                                     imgSet.css("display","none");
                                     //tempDivHolder.insertAfter(ele);
                                     //$(ele).after(imgSet);
+                                    
                                     $(ele).prepend(tempDivHolder);
                             }
                             else {
@@ -268,6 +332,7 @@
 
                                 if( $(imgItr1[ind]).css("background-image") !== 'none' ) {
 
+                                    $(imgItr2[ind]).addClass("control-nav-x-"+(ind/2));
                                     $(imgItr2[ind]).css( "background-image", ""+$(imgItr1[ind]).css( "background-image" ) );
                                 }
                                 else {
