@@ -127,9 +127,9 @@
          * Performs the scroll animation
          * 
          */
-        scrollAnimation: function( posAnim ) {
+        scrollAnimation: function( posAnim, ele ) {
             var self = this;
-            $( 'body' ).animate({scrollTop: ""+posAnim[1]+"px" },500);
+            $( ele ).animate({scrollTop: ""+posAnim+"px" },500);
             
         },
         
@@ -168,7 +168,7 @@
                                 var lastInd = getCid.lastIndexOf("-");
                                 var tempStr = getCid.substring(0,lastInd)+"x"+getCid.substring(lastInd);
                                 tempStr = tempStr.trim();
-                                self.scrollAnimation( self.findPos( $("."+tempStr).get(0) ) );
+                                self.scrollAnimation( (self.findPos( $("."+tempStr).get(0) ))[1], 'body' );
                             });
                         } else if ( !isEnabledAutoNavigationScroll ) {
                             $(".control-nav-x-"+cnt).unbind("click");
@@ -183,7 +183,48 @@
             return this;
         },
         
-        
+        /*
+         * Bind an event to the scroll
+         * set paramenter to false in order to unbind event
+         */
+        setAutoNavPanelScroll: function( isEnabledAutoNavPanelScroll ) {
+            var self = this;
+            
+            var cnt=0;
+            var posArr=[],tempArr,labArr=[];
+                while( true ) {
+                    if( $(".control-nav-x-"+cnt).get(0) ) {
+                        var tempStr = "control-nav-xx-"+cnt;
+                        tempStr = tempStr.trim();
+                        tempArr = self.findPos( $("."+tempStr).get(0) );
+                        posArr.push(tempArr[1]);
+                        tempStr = "control-nav-x-"+cnt;
+                        tempStr = tempStr.trim();
+                        tempArr = self.findPos( $("."+tempStr).get(0) );
+                        labArr.push(tempArr[1]);
+                        
+                    }
+                    else {
+                        break;
+                    }
+                    cnt++;
+                }
+            
+            if( isEnabledAutoNavPanelScroll ) {
+                $( global ).scroll(function( e ){
+                    posArr.forEach( function(ele,num) {
+                        var gap = $( global ).scrollTop();
+                        if( ele < (gap+10) && ele > (gap-10) ) {
+                            self.scrollAnimation( labArr[num],".nav-container-SB" )
+                        }
+                    } );
+                });
+            } else if( !isEnabledAutoNavPanelScroll ) {
+                $( global ).off("scroll");
+            }
+            
+            return this;
+        },
         
         /*
          * Check's the user setting's or returns default setting's
@@ -207,7 +248,6 @@
         */
         commonFuncForImageAndDescription: function(ind, ele, self, optionSelect) {
             
-                    console.log("first child"+ind);
                     if( optionSelect === "containerSB" ) {
                         $(ele).addClass("col-sm-9");
                         $(ele).addClass("col-md-9");
@@ -219,7 +259,6 @@
                     }
                     
                     var imgSet = $(ele).find("img");
-                    console.log("test each image ==> "+imgSet.length);
                         
                     var DescriptionBlock = $(imgSet).siblings();
                         
@@ -324,20 +363,22 @@
         /*
         */
         commanFunctionForNavigationPanel: function( imgItr1, imgItr2 ) {
-                this.imgItr1 = imgItr1;
-                this.imgItr2 = imgItr2;
+                var self = this, setArr;
             if( imgItr1 && imgItr2 ){
+                
+                    var cnt=0;
                     Object.keys( imgItr2 ).forEach( function(ele, ind) {
-
+                            
                             if( imgItr2[ind] ) {
 
                                 if( $(imgItr1[ind]).css("background-image") !== 'none' ) {
 
                                     $(imgItr2[ind]).addClass("control-nav-x-"+(ind/2));
                                     $(imgItr2[ind]).css( "background-image", ""+$(imgItr1[ind]).css( "background-image" ) );
+                                    cnt = (ind/2);
                                 }
                                 else {
-
+                                    
                                     $(imgItr2[ind]).html( ""+$(imgItr1[ind]).children("div").first().html() );
                                     $(imgItr2[ind]).children("p").css("text-align","center");
                                     $(imgItr2[ind]).children("p").css("font-weight","bold");
@@ -346,12 +387,16 @@
 
                             }
                     } );
+                    
+                    setArr = self.findPos( $(".control-nav-x-"+cnt).get(0) );
+                    var sibNav = $(".control-nav-x-"+cnt).siblings("div");
+                    sibNav.css("margin-bottom",""+setArr[1]+"px");
+                    
                } else {
                    throw new Error("Image Elements missing");
                }
         
         },
-        
         
         /*
          * Set's all the required settings

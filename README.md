@@ -110,9 +110,13 @@ Load Image's and Article's Directly From Website @ version 2.0 - SlideBlogNaviga
 <b>Function's as</b>: Set's the Image border width.
 
 
-## API's methods ( Few methods under construction )
+## API's methods ( Few CSS methods under construction )
 
 <b>Method</b>: setAutomaticScroll( --boolean-- )
 <b>Default</b>: No click event assigned
 <b>Function's</b>: Assign's click event to Navigation Panel
+
+<b>Method</b>: setAutoNavPanelScroll( --boolean-- )
+<b>Default</b>: No scroll event assigned
+<b>Function's</b>: Assign's scroll event to Blog Navigation
 
