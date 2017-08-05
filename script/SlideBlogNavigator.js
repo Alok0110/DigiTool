@@ -1,13 +1,5 @@
 ;(function (global, $){
-    
-    // auto scroll true or false - default true
-    // auto mobile button option, hover of right panel - default false
-    // auto sample description show on hover of right panel - default false
-    // set top margin through API - default 0px
-    // set bottom margin through API - default 0px
-    // set background color content holder - default
-    // set background color left panel holder - default
-    
+        
     
     /*
      * Check if jquery is loaded first  
@@ -58,42 +50,28 @@
      */
     SlideBlogNav.prototype = {
         
-        /*
-         * The Navigator will only indicate which Blog is selected but will not
-         * Auto scroll to the desired Blog if the parameter passed is false
-         */
-        autoScrollOnNavEnable: function( isEnabledAutoScroll ) {
-        
-            if( isEnabledAutoScroll ) {
-                
-            }
-            
-            return this;
-        },
-        
-        /*
-         * The Navigator will hide itself if parameter passed to this method is
-         * true
-         */
-        showSampleDescription: function( isEnabledSampleShow ) {
-        
-            if( isEnabledSampleShow ) {
-                
-            }
-            
-            return this;
-        },
         
         /*
          * Set top margin in px, pass pixel to this function
          */
         setTopMargin: function( pxValue ){
-            
-            if( pxValue ) {
-                
+            var self = this;
+            if( (pxValue) && $.type(pxValue) === "string" ) {
+                self.obj.topMargin = pxValue;
+                $(".nav-container-SB").css("margin-top",""+self.checkProperty( self.obj.topMargin, self.defaultVar.topMargin));
+                $(".container-SB").css("margin-top",""+self.checkProperty( self.obj.topMargin, self.defaultVar.topMargin ));
+            } else {
+                throw new Error("Incorrect Value Passed");
             }
             
             return this;
+            
+        },
+        
+        /*
+         *
+         */
+        checkSettingsApply: function() {
             
         },
         
@@ -101,9 +79,164 @@
          * Set bottom margin in px, pass pixel to this function
          */
         setBottomMargin: function( pxValue ){
-            
-            if( pxValue ) {
+            var self = this;
+            if( (pxValue) && $.type(pxValue) === "string" ) {
+                self.obj.bottomMargin = pxValue;
                 
+                var DescriptionBlock = $(imgSet).siblings();
+                
+                
+            } else {
+                throw new Error("Incorrect Value Passed");
+            }
+            
+            return this;
+            
+        },
+        
+        /*
+         *
+         */
+        setImageAsBackground: function( boolVal ) {
+            var self = this;
+            if( $.type(boolVal) === "boolean" ) {
+                self.obj.setImageAsBackground = boolVal;
+                
+            } else {
+                throw new Error("Incorrect Value Passed");
+            }
+            
+            return this;
+            
+        },
+        
+        /*
+         *
+         */
+        setBackgroundColor: function( hexVal ) {
+            var self = this;
+            if( (hexVal) && $.type(hexVal) === "string" ) {
+                self.obj.setBackgroundColor = hexVal;
+                
+            } else {
+                throw new Error("Incorrect Value Passed");
+            }
+            
+            return this;
+            
+        },
+        
+        /*
+         *
+         */
+        setImageBorderColor: function( hexVal ) {
+            var self = this;
+            if( (hexVal) && $.type(hexVal) === "string" ) {
+                self.obj.imageBorderColor = hexVal;
+                
+            } else {
+                throw new Error("Incorrect Value Passed");
+            }
+            
+            return this;
+            
+        },
+        
+        /*
+         *
+         */
+        setImageBorderStyle: function( hexVal ) {
+            var self = this;
+            if( (hexVal) && $.type(hexVal) === "string" ) {
+                self.obj.imageBorderColor = hexVal;
+                
+            } else {
+                throw new Error("Incorrect Value Passed");
+            }
+            
+            return this;
+            
+        },
+        
+        /*
+         *
+         */
+        setImageBorderWidth: function( hexVal ) {
+            var self = this;
+            if( (hexVal) && $.type(hexVal) === "string" ) {
+                self.obj.imageBorderWidth = hexVal;
+                
+            } else {
+                throw new Error("Incorrect Value Passed");
+            }
+            
+            return this;
+            
+        },
+        
+        
+        
+        /*
+         *
+         */
+        setBlogTitleFontSize: function( hexVal ) {
+            var self = this;
+            if( (hexVal) && $.type(hexVal) === "string" ) {
+                self.obj.blogTitleFontSize = hexVal;
+                
+                
+                
+            } else {
+                throw new Error("Incorrect Value Passed");
+            }
+            
+            return this;
+            
+        },
+        
+        /*
+         *
+         */
+        setBlogTitleTopMargin: function( hexVal ) {
+            var self = this;
+            if( (hexVal) && $.type(hexVal) === "string" ) {
+                self.obj.blogTitleTopMargin = hexVal;
+                
+            } else {
+                throw new Error("Incorrect Value Passed");
+            }
+            
+            return this;
+            
+        },
+        
+        /*
+         *
+         */
+        setBlogTitleBottomMargin: function( hexVal ) {
+            var self = this;
+            if( (hexVal) && $.type(hexVal) === "string" ) {
+                self.obj.blogTitleBottomMargin = hexVal;
+                
+            } else {
+                throw new Error("Incorrect Value Passed");
+            }
+            
+            return this;
+            
+        },
+        
+        
+        /*
+         *
+         */
+        setBlogTitleFontColor: function( hexVal ) {
+            var self = this;
+            if( (hexVal) && $.type(hexVal) === "string" ) {
+                self.obj.blogTitleFontColor = hexVal;
+               
+            } else {
+                throw new Error("Incorrect Value Passed");
             }
             
             return this;
@@ -139,13 +272,15 @@
          */
         findPos: function( objT ) {
             var curleft = curtop = 0;
-            if (objT.offsetParent) {
-            
-                do {
-                        curleft += objT.offsetLeft;
-                        curtop += objT.offsetTop;
-                    } while (objT = objT.offsetParent);
-                
+            if( objT ) {
+                    if (objT.offsetParent) {
+
+                    do {
+                            curleft += objT.offsetLeft;
+                            curtop += objT.offsetTop;
+                        } while (objT = objT.offsetParent);
+
+                }
             }
             return [curleft,curtop];
         },
@@ -214,8 +349,9 @@
                 $( global ).scroll(function( e ){
                     posArr.forEach( function(ele,num) {
                         var gap = $( global ).scrollTop();
-                        if( ele < (gap+10) && ele > (gap-10) ) {
-                            self.scrollAnimation( labArr[num],".nav-container-SB" )
+                        if( ele < (gap+25) && ele > (gap-25) ) {
+                        
+                            self.scrollAnimation( (labArr[num]),".nav-container-SB" )
                         }
                     } );
                 });
@@ -239,6 +375,48 @@
                     }
                     return userSetting;
             }
+        },
+        
+        /*
+         * Common function for settings
+         */
+        commonSettingsFunc: function( ind, ele, self, optionSelect, DescriptionBlock ){
+            
+                if( DescriptionBlock.length > 1 ) {
+                        // Recent changes to side blog navigator
+                               
+                    }
+                    else {
+                        
+                        if( optionSelect !== "NavcontainerSB" ) {
+                            
+                            var headingOfBlog = DescriptionBlock.first();
+                            var descArr = DescriptionBlock.children();
+                            //var bodyOfBlog = descArr[1];
+                            //var headingOfBlog = descArr[0];
+
+                            descArr.each(function( ind, ele ) {
+                                if( ind === 0 ) {
+                                      $(ele).css("text-align","center");  
+                                      $(ele).css("font-weight","bold"); 
+                                      $(ele).css("font-size",""+self.checkProperty( self.obj.blogTitleFontSize, self.defaultVar.blogTitleFontSize ));
+                                      $(ele).css("color",""+self.checkProperty( self.obj.blogTitleFontColor, self.defaultVar.blogTitleFontColor ));
+                                      $(ele).css("margin-top",""+self.checkProperty( self.obj.blogTitleTopMargin, self.defaultVar.blogTitleBottomMargin ));
+                                      $(ele).css("margin-bottom",""+self.checkProperty( self.obj.blogTitleBottomMargin, self.defaultVar.blogTitleBottomMargin ));
+                                }
+                                if( ind === 1 ) {
+                                    $(ele).css("display","inline-block");
+                                    $(ele).css("width","70%");
+                                    $(ele).css("margin-left","15%");
+                                    $(ele).css("margin-right","15%");
+                                    $(ele).css("margin-bottom","20px");
+                                }
+                            });
+                            
+                        }
+                        
+                        
+                }
         },
         
         /*
@@ -319,42 +497,8 @@
                                     imgSet.css("text-align","center");
                             } 
                     }
-                        
-                    if( DescriptionBlock.length > 1 ) {
-                        throw new Error("More than one container found for displaying the blog article's heading and contents, wrong format!");        
-                    }
-                    else {
-                        
-                        if( optionSelect !== "NavcontainerSB" ) {
-                            
-                            var headingOfBlog = DescriptionBlock.first();
-                            var descArr = DescriptionBlock.children();
-                            //var bodyOfBlog = descArr[1];
-                            //var headingOfBlog = descArr[0];
-
-                            descArr.each(function( ind, ele ) {
-                                if( ind === 0 ) {
-                                      $(ele).css("text-align","center");  
-                                      $(ele).css("font-weight","bold"); 
-                                      $(ele).css("font-size",""+self.checkProperty( self.obj.blogTitleFontSize, self.defaultVar.blogTitleFontSize ));
-                                      $(ele).css("color",""+self.checkProperty( self.obj.blogTitleFontColor, self.defaultVar.blogTitleFontColor ));
-                                      $(ele).css("margin-top",""+self.checkProperty( self.obj.blogTitleTopMargin, self.defaultVar.blogTitleBottomMargin ));
-                                      $(ele).css("margin-bottom",""+self.checkProperty( self.obj.blogTitleBottomMargin, self.defaultVar.blogTitleBottomMargin ));
-                                }
-                                if( ind === 1 ) {
-                                    $(ele).css("display","inline-block");
-                                    $(ele).css("width","70%");
-                                    $(ele).css("margin-left","15%");
-                                    $(ele).css("margin-right","15%");
-                                    $(ele).css("margin-bottom","20px");
-                                }
-                            });
-                            
-                        }
-                        
-                        
-                }
             
+                    self.commonSettingsFunc( ind, ele, self, optionSelect, DescriptionBlock );
         },
         
         /*
