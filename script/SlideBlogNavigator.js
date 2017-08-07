@@ -262,7 +262,8 @@
          */
         scrollAnimation: function( posAnim, ele ) {
             var self = this;
-            $( ele ).animate({scrollTop: ""+posAnim+"px" },500);
+            console.log("scroll top ==> "+posAnim+" "+ele);
+            $( ""+ele ).animate({scrollTop: ""+posAnim+"px" },500);
             
         },
         
@@ -298,12 +299,15 @@
                         
                         if( isEnabledAutoNavigationScroll ) {
                             $(".control-nav-x-"+cnt).bind("click",function( e ){
+                                e.preventDefault();
                                 var cT = e.currentTarget;
                                 var getCid = $(cT).attr("class");
                                 var lastInd = getCid.lastIndexOf("-");
                                 var tempStr = getCid.substring(0,lastInd)+"x"+getCid.substring(lastInd);
                                 tempStr = tempStr.trim();
-                                self.scrollAnimation( (self.findPos( $("."+tempStr).get(0) ))[1], 'body' );
+                                var bitS = (self.findPos( $("."+tempStr).get(0) ))[1];
+                                self.scrollAnimation( bitS , "html, body" );
+                                console.log("click event occured pppp ==>"+(self.findPos( $("."+tempStr).get(0) ))[1]);
                             });
                         } else if ( !isEnabledAutoNavigationScroll ) {
                             $(".control-nav-x-"+cnt).unbind("click");
@@ -427,9 +431,9 @@
         commonFuncForImageAndDescription: function(ind, ele, self, optionSelect) {
             
                     if( optionSelect === "containerSB" ) {
-                        $(ele).addClass("col-sm-9");
-                        $(ele).addClass("col-md-9");
-                        $(ele).addClass("col-lg-9");
+                        $(ele).addClass("col-sm-12");
+                        $(ele).addClass("col-md-12");
+                        $(ele).addClass("col-lg-12");
                         $(ele).addClass("control-nav-xx-"+ind);
                     }
                     else if( optionSelect === "NavcontainerSB" ) {
@@ -534,6 +538,7 @@
                     
                     setArr = self.findPos( $(".control-nav-x-"+cnt).get(0) );
                     var sibNav = $(".control-nav-x-"+cnt).siblings("div");
+                    sibNav.css("display","inline-block");
                     sibNav.css("margin-bottom",""+setArr[1]+"px");
                     
                } else {
@@ -558,6 +563,7 @@
             var ParaFirstContainer = $(".container-SB");
             ParaFirstContainer.addClass("row");
             ParaFirstContainer.css("margin-top",""+self.checkProperty( self.obj.topMargin, self.defaultVar.topMargin ));
+            ParaFirstContainer.css("margin-left","25%");
             
             var ParaSecondContainer = $(".nav-container-SB");
             ParaSecondContainer.css("margin-top",""+self.checkProperty( self.obj.topMargin, self.defaultVar.topMargin ));
@@ -594,7 +600,7 @@
                     $(".nav-container-SB").css("width","25%");
                     $(".nav-container-SB").css("z-index","997");
                     $(".nav-container-SB").css("position","fixed");
-                    $(".nav-container-SB").css("margin-left","75%");
+                    $(".nav-container-SB").css("margin-right","75%");
                     $(".nav-container-SB").css("overflow","auto");
                     
                     var firstNavContainerChilds = $(".nav-container-SB").children();
